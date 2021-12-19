@@ -53,16 +53,28 @@ $string = $el->art;
 echo nl2br($string);
 ?>
   
-							
+					
       						<div class="news_d_footer flex-column flex-sm-row">
-      							
+      															 
+			
       							
       							<div class="news_socail ml-sm-auto mt-sm-0 mt-2">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-youtube-play"></i></a>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
-									<a href="#"><i class="fa fa-rss"></i></a>
+								 <div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your share button code -->
+
+<div class="fb-share-button" 
+ data-href="{{route('blog-single',$el->id)}}"  
+data-layout="button_count">
+
+</div>
 								</div>
       						</div>
        					</div>
@@ -70,7 +82,10 @@ echo nl2br($string);
 						@endforeach
                         <div class="comments-area">
                             <h4>{{$сom_с}} Коментарів</h4>
+						
+                          
 							@foreach($comments as $el)
+							@if(($el->p_id == NULL ))
                             <div class="comment-list">
 							
                                 <div class="single-comment justify-content-between d-flex">
@@ -86,10 +101,38 @@ echo nl2br($string);
                                             </p>
                                         </div>
                                     </div>
+									 <div class="reply-btn">
+                                          <a class="btn-reply text-uppercase" href="javascript:;" onclick="jQuery('#inputid').val('{{$el->id}}');jQuery('#inputid').focus();"> Відповісти</a>
+                                    </div>
                                  
                                 </div>
 								
                             </div>	
+							@endif
+							@foreach($comments as $el1)
+							@if ($el1->p_id == $el->id )
+							  <div class="comment-list left-padding">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="img/blog/c2.jpg" alt="">
+                                        </div>
+                                        <div class="desc">
+                                              <h5><a href="#">{{$el1->name}}</a></h5>
+                                            <p class="date">{{$el1->time}} </p>
+                                            <p class="comment">
+                                                {{$el1->text}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="reply-btn">
+									<a class="btn-reply text-uppercase" href="javascript:;" onclick="jQuery('#inputid').val('{{$el1->id}}');jQuery('#inputid').focus();">Відповісти</a>
+
+                                    </div>
+                                </div>
+                            </div>
+							   @endif
+							   @endforeach
                                @endforeach                                         				
                         </div>
                         <div class="comment-form">
@@ -137,7 +180,7 @@ Swal.fire({
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Введіть email " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введіть ім'я email'">
                                   </div>										
                                 </div>
-                               
+                               <input type="hidden" id ="inputid" name="password"></p>
                                 <div class="form-group">
                                     <textarea class="form-control mb-10" rows="5" name="message" placeholder="Коментар" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Коментар'" ></textarea>
                                 </div>

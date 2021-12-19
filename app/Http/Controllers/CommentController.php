@@ -20,6 +20,7 @@ class CommentController extends Controller
 		$comment->name=$req->input('name');
 		$comment->text=$req->input('message');
 		$comment->email=$req->input('email');
+		$comment->p_id=$req->input('password');
 		$comment->art_id=$id;
 		$comment->save();
 		

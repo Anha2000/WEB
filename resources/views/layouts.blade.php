@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
   <head>
+
     <!-- Mobile Specific Meta -->
     <meta
       name="viewport"
@@ -38,6 +39,7 @@
   </head>
 
   <body>
+
     <!--================ Start Header Area =================-->
 	
     <header class="header-area">
@@ -54,7 +56,7 @@
             <div class="col-5 text-lg-center mt-2 mt-lg-0">
               <span class="logo-outer">
                 <span class="logo-inner">
-                  <a href="index"
+                  <a href="{{route('index', $r)}}"
                     ><img class="mx-auto" src="/img/logo.png" alt style="max-width: 50%;"
 "
                   /></a>
@@ -193,6 +195,7 @@
         </div>
        
       </div>
+
     </footer>
     <!--================ End Footer Area =================-->
 

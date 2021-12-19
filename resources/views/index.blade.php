@@ -29,15 +29,16 @@
       <div class="social-icons">
         <ul>
           <li>
-            <a href="index"><i class="fa fa-facebook"></i></a>
+            <a href="index"><i ></i></a>
           </li>
           <li>
-            <a href="index"><i class="fa fa-twitter"></i></a>
+            <a href="index"><i></i></a>
           </li>
           <li>
-            <a href="index"><i class="fa fa-pinterest"></i></a>
+            <a href="index"><i ></i></a>
           </li>
-          <li class="diffrent">Поділитися</li>
+		   
+         
         </ul>
       </div>
     </section>
@@ -153,6 +154,7 @@
                     <div class="d-flex justify-content-between mt-20">
                       <div>
                         <a href="#" class="blog-post-btn">
+
                            Більше <span class="ti-arrow-right"></span>
                         </a>
                       </div>
