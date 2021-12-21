@@ -29,11 +29,15 @@
 
     <!--================ Start Blog Post Area =================-->
     <section class="blog-post-area section-gap relative">
+	
       <div class="container">
+	 
         <div class="row">
+		 @if(count($articles))
           <div class="col-lg-8">
             <div class="row">
               <div class="col-lg-6 col-md-6">
+			  
                  @foreach($articles as $el)
 			     <div class="single-amenities">
                   <div class="amenities-thumb">
@@ -103,7 +107,7 @@
 			  
 			  
 			  @endforeach
-
+			 
                 <div class="single-amenities">
                   <div class="amenities-thumb">
                     <img
@@ -431,9 +435,19 @@
                           </li>
                       </ul>
                   </nav>
+				 
+				    @else
+				
+				  <h3>Записів не знайдено </h3>
+				  
+				@endif
               </div>
+			
             </div>
+			
           </div>
-
+			
           <!-- Start Blog Post Siddebar -->
-         @endsection
+         
+		 
+	@endsection

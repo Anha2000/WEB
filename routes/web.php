@@ -12,3 +12,5 @@ Route::get('/blog-single/{id}', 'App\Http\Controllers\CommentController@PostSing
 
 
 Route::post('/blog-single/submit/{id}', 'App\Http\Controllers\CommentController@submit')->name('comment');
+
+Route::get('index/search', 'App\Http\Controllers\CommentController@search')->name('search');

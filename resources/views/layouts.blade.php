@@ -125,8 +125,8 @@
           <div class="col-lg-4 sidebar-widgets">
               <div class="widget-wrap">
                 <div class="single-sidebar-widget search-widget">
-                  <form class="search-form" action="#">
-                    <input placeholder="Знайти допис" name="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Знайти допис'">
+                  <form class="search-form" action="{{route('search')}}" method="get">
+                    <input placeholder="Знайти допис" name="search" id="search" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Знайти допис'">
                     <button type="submit"><i class="fa fa-search"></i></button>
                   </form>
                 </div>

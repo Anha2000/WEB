@@ -28,6 +28,34 @@ class CommentController extends Controller
 		return redirect()->route('blog-single',$id)->with('success','Коментар було додано');
 		
 	}
+	public function search(Request $req){
+		
+		$article = new Article;
+		$word=$req->search;
+		$category_list = new Category_list;
+		
+		$articles=$article::select('*','articles.id as art_id')->where('articles.name', 'like','%'.$word.'%' )->orderBy('articles.created_at','asc')->take(8)->get();
+			 foreach ($articles as $el){
+				$dt = Carbon::parse($el->created_at)->locale('uk')->isoFormat('D MMMM, YYYY');
+				$el->time = $dt;
+			}
+			
+		  $categories = new Category;
+		  $categories=$categories::select('*')->get();
+ 
+		$count=$category_list::select("category_id", DB::raw("count(*) as art_count"))
+                        ->groupBy('category_id')
+                        ->get();
+
+
+		 $category = $article::select('articles.id as articles' ,'categories.name as category','categories.id as id')
+   ->join('category_lists', 'category_lists.art_id', '=', 'articles.id')
+	->join('categories', 'categories.id', '=', 'category_lists.category_id')
+   ->get();
+  
+ return view('category', ['articles'=>$articles,'category'=>$category, 'categories'=>$categories, 'count'=>$count,'r'=> "index", 'c'=> "category", 'id'=>0]);
+		
+	}
 	  public function PostIndex($name){
 		$article = new Article;
 		$category_list = new Category_list;
