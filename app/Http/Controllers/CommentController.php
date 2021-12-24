@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Article;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Category_list;
 use \Carbon\Carbon;
@@ -142,6 +143,11 @@ $comments= $comment::select('*')->where('comments.art_id', '=',$id )->orderBy('c
 $сom_с=$comments->count();
 
    return view('blog-single',['articles'=>$articles,'category'=>$category, 'categories'=>$categories, 'count'=>$count, 'r'=> "index", 'c'=> "category", 'comments'=>$comments, 'сom_с'=>$сom_с]);
+	
+	}
+	public function Test(User $user){
+	
+	dd($user);
 	
 	}
 	

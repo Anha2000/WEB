@@ -14,3 +14,15 @@ Route::get('/blog-single/{id}', 'App\Http\Controllers\CommentController@PostSing
 Route::post('/blog-single/submit/{id}', 'App\Http\Controllers\CommentController@submit')->name('comment');
 
 Route::get('index/search', 'App\Http\Controllers\CommentController@search')->name('search');
+
+  
+
+Route::group(['middleware' => ['role:admin']], function () {
+	 Route::get('/uuu/1',function () {return view ('uuu');});
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
