@@ -25,7 +25,7 @@
                     <div class="col-lg-8">
 					@foreach($articles as $el)
        					<div class="main_blog_details">
-       						<img class="img-fluid" src="/img/blog-post/{{$el->img}}" alt="">
+       						<img class="img-fluid" src="{{$el->img}}" alt="">
 							
        						<a href="#"><h4>{{$el->name}}</h4></a>
        						<div class="user_details">

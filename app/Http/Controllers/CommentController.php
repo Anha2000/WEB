@@ -35,7 +35,8 @@ class CommentController extends Controller
 		$word=$req->search;
 		$category_list = new Category_list;
 		
-		$articles=$article::select('*','articles.id as art_id')->where('articles.name', 'like','%'.$word.'%' )->orderBy('articles.created_at','asc')->take(8)->get();
+		$articles=$article::select('*','articles.id as art_id')->where('articles.name', 'like','%'.$word.'%' )
+		->orderBy('articles.created_at','asc')->take(8)->get();
 			 foreach ($articles as $el){
 				$dt = Carbon::parse($el->created_at)->locale('uk')->isoFormat('D MMMM, YYYY');
 				$el->time = $dt;
@@ -88,10 +89,15 @@ class CommentController extends Controller
 		$article = new Article;
 		$category_list = new Category_list;
 
-		$articles=$article::select('*')
+	$articles=$article::select('*')
+				->get();
+
+ 
+		$articles=$article::select('*','articles.created_at as created_at')
 		 ->join('category_lists', 'category_lists.art_id', '=', 'articles.id')
 		 ->where('category_lists.category_id', '=',$id )->orderBy('articles.created_at','asc')->get();
-			 foreach ($articles as $el){
+		 
+			foreach ($articles as $el){
 				$dt = Carbon::parse($el->created_at)->locale('uk')->isoFormat('D MMMM, YYYY');
 				$el->time = $dt;
 			}
@@ -108,6 +114,7 @@ class CommentController extends Controller
    ->join('category_lists', 'category_lists.art_id', '=', 'articles.id')
 	->join('categories', 'categories.id', '=', 'category_lists.category_id')
    ->get();
+  
    return view('category',['articles'=>$articles,'category'=>$category, 'categories'=>$categories, 'count'=>$count, 'r'=> "index", 'c'=> "category", 'id'=>$id]);
 	
 	}

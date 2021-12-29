@@ -17,8 +17,12 @@ Route::get('index/search', 'App\Http\Controllers\CommentController@search')->nam
 
   
 
-Route::group(['middleware' => ['role:admin']], function () {
-	 Route::get('/uuu/1',function () {return view ('uuu');});
+Route::middleware(['role:admin'])->prefix('admin/admin_panel')->group(function () {
+	 Route::get('/','App\Http\Controllers\Admin\homeController@index' )->name('homeAdmin');
+	 Route::resource('/category',App\Http\Controllers\Admin\CategoryController::class);
+	 Route::resource('/article',App\Http\Controllers\Admin\ArticleController::class);
+
+
 });
 Auth::routes();
 
