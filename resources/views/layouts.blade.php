@@ -102,11 +102,9 @@
                     </div>
                   </li> -->
 				  <li class="nav-item">
-                  <a class="nav-link"  href="{{route('index', $r)}}">Календар</a>
+                  <a class="nav-link"  href="{{route('calendar')}}">Календар</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{route('index', $r)}}">Про нас</a>
-                  </li>
+                
                 </ul>
               </div>
             </nav>
@@ -163,6 +161,7 @@
         </div>
       </div>
     </section>
+	
     <!--================ End Blog Post Area =================-->
 
     <!--================ Start Footer Area =================-->
@@ -219,6 +218,8 @@
     ></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script src="/js/main.js"></script>
+	<script src="/js/masonry.pkgd.min.js"></script>
+
 
   </body>
 </html>

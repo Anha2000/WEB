@@ -4421,3 +4421,51 @@ background-color: rgba(252, 20, 0, 0.8);
 -o-transform: rotate(360deg);
 transform: rotate(360deg);
 }
+.grid {
+
+  max-width: 1200px;
+}
+
+/* clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- grid-item ---- */
+
+.grid-item {
+  width: 160px;
+  height: 120px;
+  float: left;
+  background: #1f3102;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.5);
+  border-radius: 5px;
+}
+.calendar{font-family: SnowCapCyr;
+    
+    position: absolute;    
+	font-size: 50px;
+
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);}
+.grid-item--width2 { width: 320px; }
+.grid-item--width3 { width: 480px; }
+.grid-item--width4 { width: 640px; }
+
+.grid-item--height2 { height: 200px; }
+.grid-item--height3 { height: 260px; }
+.grid-item--height4 { height: 360px; }
+@font-face {
+	font-family: 'SnowCapCyr';
+	src: url('./fonts/snowcapcyr.eot'); /* IE 9 Compatibility Mode */
+	src: url('./fonts/snowcapcyr.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('./fonts/snowcapcyr.woff2') format('woff2'), /* Super Modern Browsers */
+		url('./fonts/snowcapcyr.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('./fonts/snowcapcyr.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('./fonts/snowcapcyr.svg#snowcapcyr') format('svg'); /* Chrome < 4, Legacy iOS */
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use App\Models\Article;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\Category_list;
 use \Carbon\Carbon;
@@ -34,7 +35,8 @@ class CommentController extends Controller
 		$word=$req->search;
 		$category_list = new Category_list;
 		
-		$articles=$article::select('*','articles.id as art_id')->where('articles.name', 'like','%'.$word.'%' )->orderBy('articles.created_at','asc')->take(8)->get();
+		$articles=$article::select('*','articles.id as art_id')->where('articles.name', 'like','%'.$word.'%' )
+		->orderBy('articles.created_at','asc')->take(8)->get();
 			 foreach ($articles as $el){
 				$dt = Carbon::parse($el->created_at)->locale('uk')->isoFormat('D MMMM, YYYY');
 				$el->time = $dt;
@@ -87,10 +89,15 @@ class CommentController extends Controller
 		$article = new Article;
 		$category_list = new Category_list;
 
-		$articles=$article::select('*')
+	$articles=$article::select('*')
+				->get();
+
+ 
+		$articles=$article::select('*','articles.created_at as created_at')
 		 ->join('category_lists', 'category_lists.art_id', '=', 'articles.id')
 		 ->where('category_lists.category_id', '=',$id )->orderBy('articles.created_at','asc')->get();
-			 foreach ($articles as $el){
+		 
+			foreach ($articles as $el){
 				$dt = Carbon::parse($el->created_at)->locale('uk')->isoFormat('D MMMM, YYYY');
 				$el->time = $dt;
 			}
@@ -107,6 +114,7 @@ class CommentController extends Controller
    ->join('category_lists', 'category_lists.art_id', '=', 'articles.id')
 	->join('categories', 'categories.id', '=', 'category_lists.category_id')
    ->get();
+  
    return view('category',['articles'=>$articles,'category'=>$category, 'categories'=>$categories, 'count'=>$count, 'r'=> "index", 'c'=> "category", 'id'=>$id]);
 	
 	}
@@ -142,6 +150,26 @@ $comments= $comment::select('*')->where('comments.art_id', '=',$id )->orderBy('c
 $сom_с=$comments->count();
 
    return view('blog-single',['articles'=>$articles,'category'=>$category, 'categories'=>$categories, 'count'=>$count, 'r'=> "index", 'c'=> "category", 'comments'=>$comments, 'сom_с'=>$сom_с]);
+	
+	}
+	  public function Calendar(){
+		$article = new Article;
+
+		$articles=$article::select('*','articles.id as art_id')->whereNotNull('articles.calendar')->get();
+		
+			 foreach ($articles as $el){
+				$dt = Carbon::parse($el->calendar)->locale('uk')->isoFormat('D.MM');
+				$el->time = $dt;
+			}
+			
+  return view('advent', ['articles'=>$articles,'r'=> "index", 'c'=> "category"]);
+ 
+	
+	}
+	
+	public function Test(User $user){
+	
+	dd($user);
 	
 	}
 	
